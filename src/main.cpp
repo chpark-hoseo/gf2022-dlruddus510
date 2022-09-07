@@ -1,6 +1,7 @@
 ﻿// SDL 
 //
 // written by changhoonpark@gmail.com
+//
 
 
 #include "main.h"
