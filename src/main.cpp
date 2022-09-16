@@ -10,7 +10,7 @@ int main(int argc, char* args[])
 		/*g_pWindow = SDL_CreateWindow("Game Framework",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, 1024, 768,
-			SDL_WINDOW_SHOWN);*/
+			SDL_WINDOW_SHOWN);*/ //한주형 건드림
 		
 		g_pWindow = SDL_CreateWindow("Test3",
 			SDL_WINDOWPOS_CENTERED,
