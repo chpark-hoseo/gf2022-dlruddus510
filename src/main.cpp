@@ -1,4 +1,5 @@
 ﻿#include <SDL2/SDL.h>
+#include <stdlib.h>
 
 SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer = 0;
@@ -20,23 +21,29 @@ bool init(const char* title, int xpos, int ypos, int height, int width, int flag
         return false;
     }
 
-    
+    SDL_SetRenderDrawColor(g_pRenderer, 255, 0, 0, 255);
 
     return true;
 }
 
 void render()
 {
-    SDL_RenderClear(g_pRenderer);
-    SDL_SetRenderDrawColor(g_pRenderer, 0, 0, 0, 255); 
+  //  SDL_SetRenderDrawColor(g_pRenderer, 255, 0, 0, 255);
+    
     // 그리기 수행  
+    SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
+    SDL_Delay(1000);
+
+    SDL_RenderClear(g_pRenderer);
+
 
     SDL_RenderPresent(g_pRenderer);
 }
 
 int main(int argc, char* argv[])
 {
-    if (init("Breaking Up HelloSDL", SDL_WINDOWPOS_CENTERED,
+    if (init("Breaking Up HelloSDL", 
+        SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, 640, 480,
         SDL_WINDOW_SHOWN))
     {
@@ -47,7 +54,7 @@ int main(int argc, char* argv[])
         return 1; // something's wrong
     }
 
-    while (!g_bRunning)
+    while (g_bRunning)
     {
         // handle input - update - render
         render();
