@@ -5,6 +5,37 @@ SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer = 0;
 bool g_bRunning = false;
 
+bool init(const char* title, int xpos, int ypos, int height, int width, int flags);
+void render();
+
+int main(int argc, char* argv[])
+{
+    if (init("Breaking Up HelloSDL",
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED, 640, 480,
+        SDL_WINDOW_SHOWN))
+    {
+        g_bRunning = true;
+    }
+    else
+    {
+        return 1; // something's wrong
+    }
+
+    int count = 0;
+
+    while (g_bRunning)
+    {
+        if (count == 10) break;
+        // handle input - update - render
+        render();
+        count++;
+    }
+
+    SDL_Quit();
+    return 0;
+}
+
 bool init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
@@ -39,29 +70,3 @@ void render()
 
     SDL_RenderPresent(g_pRenderer);
 }
-
-int main(int argc, char* argv[])
-{
-    if (init("Breaking Up HelloSDL", 
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED, 640, 480,
-        SDL_WINDOW_SHOWN))
-    {
-        g_bRunning = true;
-    }
-    else
-    {
-        return 1; // something's wrong
-    }
-
-    while (g_bRunning)
-    {
-        // handle input - update - render
-        render();
-    }
-
-    SDL_Quit();
-    return 0;
-}
-
-
