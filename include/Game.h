@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL2/SDL.h"
 
+
 class Game
 {
 public:
@@ -14,8 +15,18 @@ public:
 	void handleEvents();
 	void clean();
 
+	
+
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+	SDL_Texture* m_pTexture;
+
+	// 원본 사각형
+	SDL_Rect m_sourceRectangle;
+
+	// 대상 사각형
+	SDL_Rect m_destinationRectangle;
 	bool m_bRunning;
 };
+
