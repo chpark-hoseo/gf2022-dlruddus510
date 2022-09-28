@@ -44,10 +44,11 @@ bool Game::running()
     return m_bRunning;
 }
 
+//다른 여러입력이 와도 처리할 수 있도록 while문을 사용합니다.
 void Game::handleEvents()
 {
     SDL_Event event;
-    if (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
