@@ -2,26 +2,33 @@
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
+    {
         m_pWindow = SDL_CreateWindow(
             title, xpos, ypos, width, height, flags);
-        if (m_pWindow != 0) {
+        if (m_pWindow != 0) 
+        {
             m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
-            if (m_pRenderer != 0) {
+            if (m_pRenderer != 0) 
+            {
                 SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
             }
-            else {
+            else 
+            {
                 return false; // 랜더러 생성 실패
             }
         }
-        else {
+        else 
+        {
             return false; // 윈도우 생설 실패 l
         }
     }
-    else {
+    else 
+    {
         return false; // SDL 초기화 실패
     }
+
 
     SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp");
 
@@ -30,11 +37,52 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     SDL_FreeSurface(pTempSurface);
 
    // SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
-    m_sourceRectangle.w = 50;
+    
+   //추가실습
+    /*m_sourceRectangle.w = 50;
     m_sourceRectangle.h = 50;
 
     m_destinationRectangle.w = 50;
     m_destinationRectangle.h = 50;
+
+    m_destinationRectangle.x = 0;
+    m_destinationRectangle.y = 0;
+
+    m_sourceRectangle.x = 0;
+    m_sourceRectangle.y = 0;*/
+
+    //1번 과제 라이더 머리 우측하단에 나타내기
+    /*m_sourceRectangle.w = 50;
+    m_sourceRectangle.h = 50;
+
+    m_destinationRectangle.w = 50;
+    m_destinationRectangle.h = 50;
+
+    m_destinationRectangle.x = 150;
+    m_destinationRectangle.y = 100;
+
+    m_sourceRectangle.x = 0;
+    m_sourceRectangle.y = 0;*/
+
+    //2번 과제 라이더 다리 나타내기
+    /*m_sourceRectangle.w = 50;
+    m_sourceRectangle.h = 50;
+
+    m_destinationRectangle.w = 50;
+    m_destinationRectangle.h = 50;
+
+    m_destinationRectangle.x = 150;
+    m_destinationRectangle.y = 100;
+
+    m_sourceRectangle.x = 50;
+    m_sourceRectangle.y = 50;*/
+
+    //3번과제 화면에 크게 나타내기
+    m_sourceRectangle.w = 123;
+    m_sourceRectangle.h = 87;
+
+    m_destinationRectangle.w = 640;
+    m_destinationRectangle.h = 640;
 
     m_destinationRectangle.x = 0;
     m_destinationRectangle.y = 0;
@@ -48,7 +96,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 void  Game::update()
 {
-
+    
 }
 
 void Game::render()
