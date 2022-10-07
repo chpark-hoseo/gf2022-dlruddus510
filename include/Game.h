@@ -1,6 +1,6 @@
 #pragma once
 #include "SDL2/SDL.h"
-
+#include <SDL2/SDL_image.h>
 
 class Game
 {
@@ -24,14 +24,6 @@ private:
 	SDL_Texture* m_pTexture;
 	SDL_Rect m_sourceRectangle; // 원본 사각형
 	SDL_Rect m_destinationRectangle; // 대상 사각형
-
-	SDL_Texture* walk_Texture;
-	SDL_Rect walk_sourceRectangle;
-	SDL_Rect walk_destinationRectangle;
-
-	SDL_Texture* run_Texture;
-	SDL_Rect run_sourceRectangle;
-	SDL_Rect run_destinationRectangle;
 
 	bool m_bRunning;
 };
