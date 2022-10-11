@@ -9,7 +9,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
             m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
             if (m_pRenderer != 0) {
-                SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+                SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
             }
             else {
                 return false; // 랜더러 생성 실패
@@ -24,7 +24,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     }
 
     m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
-
+    m_textureManager.load("assets/Walk2.png", "walk", m_pRenderer); // png 파일 로드
     m_bRunning = true;
     return true;
 }
@@ -32,12 +32,15 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 void  Game::update()
 {
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    w_currentFrame = ((SDL_GetTicks() / 100) % 8); // 애니메이션
 }
 
 void Game::render()
 {     
     SDL_RenderClear(m_pRenderer);   
     m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+    m_textureManager.drawFrame("walk", 200, 200, 128, 128, 0, w_currentFrame, m_pRenderer); // 첫번째줄 시트 나타내기
+    m_textureManager.drawFrame("walk", 200, 328, 128, 128, 1, w_currentFrame, m_pRenderer); // 두번째줄 시트 나타내기
     m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
     SDL_RenderPresent(m_pRenderer);
 }
