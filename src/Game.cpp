@@ -32,8 +32,36 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     m_sourceRectangle.h = 82;
     m_destinationRectangle.w = m_sourceRectangle.w;
     m_destinationRectangle.h = m_sourceRectangle.h;
-    m_sourceRectangle.x = m_destinationRectangle.x = 0;
-    m_sourceRectangle.y = m_destinationRectangle.y = 0;
+    m_sourceRectangle.x = 0;
+    m_sourceRectangle.y = 0;
+    m_destinationRectangle.x = 300;
+    m_destinationRectangle.y = 380;
+
+    //나만의 piskel 
+    SDL_Surface* walkTempSurface = IMG_Load("assets/Walk2.png");
+    walk_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, walkTempSurface);
+    SDL_FreeSurface(walkTempSurface);
+    walk_sourceRectangle.w = 128;
+    walk_sourceRectangle.h = 128;
+    walk_destinationRectangle.w = 128;
+    walk_destinationRectangle.h = 128;
+    walk_sourceRectangle.x = 0;
+    walk_sourceRectangle.y = 0;
+    walk_destinationRectangle.x = 0;
+    walk_destinationRectangle.y = 0;
+
+    // 바탕화면
+    SDL_Surface* bTempSurface = IMG_Load("assets/background.png");
+    b_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, bTempSurface);
+    SDL_FreeSurface(bTempSurface);
+    b_sourceRectangle.w = 2360;
+    b_sourceRectangle.h = 640;
+    b_destinationRectangle.w = 2360;
+    b_destinationRectangle.h = 640;
+    b_sourceRectangle.x = 0;
+    b_sourceRectangle.y = 0;
+    b_destinationRectangle.x = 0;
+    b_destinationRectangle.y = 0;
 
     m_bRunning = true;
     return true;
@@ -42,12 +70,37 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 void  Game::update()
 {
     m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+    walk_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 8);
+
+    // 위에서 아래로 떨어지는 오브젝트 바닥에서 멈춤
+    if (walk_destinationRectangle.y <= 340) walk_destinationRectangle.y = walk_destinationRectangle.y + 50;
+
+    // 강아지 제자리 점프
+    if (flag == 1)
+    {
+        m_destinationRectangle.y = m_destinationRectangle.y - 20;
+        if (m_destinationRectangle.y == 300) flag = 0;
+    }
+    if (flag == 0)
+    {
+        m_destinationRectangle.y = m_destinationRectangle.y + 20;
+        if (m_destinationRectangle.y == 400) flag = 1;
+    }
+
+    // 화면 오른쪽으로 진행
+    b_destinationRectangle.x = b_destinationRectangle.x - 10;
+    if (b_destinationRectangle.x == -1720) b_destinationRectangle.x = 0;
+    
+    
+    SDL_Delay(100);
 }
 
 void Game::render()
 {     
     SDL_RenderClear(m_pRenderer);
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);       
+    SDL_RenderCopy(m_pRenderer, b_pTexture, &b_sourceRectangle, &b_destinationRectangle); // 배경
+    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle); // 강아지 
+    SDL_RenderCopy(m_pRenderer, walk_pTexture, &walk_sourceRectangle, &walk_destinationRectangle); // 걷는 애니메이션
     SDL_RenderPresent(m_pRenderer);
 }
 
