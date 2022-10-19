@@ -20,7 +20,7 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-
+	int time = 0;
 	int m_currentFrame;
 
 

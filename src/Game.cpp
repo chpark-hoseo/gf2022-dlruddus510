@@ -34,7 +34,9 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 void  Game::update()
 {
+    time++;
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    SDL_Delay(100);
 }
 
 void Game::render()
@@ -42,6 +44,10 @@ void Game::render()
     SDL_RenderClear(m_pRenderer); 
     TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
         m_pRenderer);
+    if (time >= 100) // 10초 뒤에 움직이지 않는 텍스쳐 삭제
+    {
+        SDL_RenderClear(m_pRenderer);
+    }
     TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128,
         82, 0, m_currentFrame, m_pRenderer);
     SDL_RenderPresent(m_pRenderer);
