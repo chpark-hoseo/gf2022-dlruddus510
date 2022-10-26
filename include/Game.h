@@ -1,10 +1,10 @@
 #pragma once
-#include "TextureManager.h"
+#include "Ball.h"
 
 class Game
 {
 public:
-	Game() { }
+	Game():B1(Ball(180, 180, 0, 0, 2, 5, 0, 500, 0)), B2(Ball(90, 90, 1000, 0, -2, 4, 100, 500, 1)), B3(Ball(100, 100, 0, 100, 3, 5, 150, 500, 0)) {}
 	~Game() { }
 
 	bool init(const char* title, int xpos, int ypos, int height, int width, int flags);
@@ -17,6 +17,10 @@ public:
 	
 
 private:
+	Ball B1;
+	Ball B2;
+	Ball B3;
+
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 

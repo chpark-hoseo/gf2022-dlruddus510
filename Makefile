@@ -1,7 +1,7 @@
 # Define the link target.
 linkTarget = a.out
 
-#pwd 명령으로 확인 -가능
+#pwd 명령?�로 ?�인 -가??
 HOME = $(PWD)
 
 SRC_DIR := $(HOME)/src
@@ -21,10 +21,10 @@ CFLAGS   := -Wall
 LDFLAGS  := -Llib
 LDLIBS   := -lm
 
-#mixer 미포함
+#mixer 미포??
 #SDL_LIBS := -L$(SDL_LIB)/libSDL2_2.0.so -lSDL2 -L$(SDL_LIB)/libSDL2_image-2.0.so $(SDL_LIB)/libSDL2_image.a -L $(SDL_LIB)/libSDL2_gfx.so $(SDL_LIB)/libSDL2_gfx.a -L $(SDL_LIB)/libSDL2_ttf-2.0.so $(SDL_LIB)/libSDL2_ttf.a  -L $(SDL_LIB)/libSDL2_mixer-2.0.so $(SDL_LIB)/libSDL2_mixer.a -lfreetype -lpng -ljpeg -ltiff -lwebp
 
-#mixer 포함  install 후 실행 가능 버전 
+#mixer ?�함  install ???�행 가??버전 
 SDL_LIBS := -L$(SDL_LIB)/libSDL2_2.0.so -lSDL2 -L$(SDL_LIB)/libSDL2_image-2.0.so $(SDL_LIB)/libSDL2_image.a -L $(SDL_LIB)/libSDL2_gfx.so $(SDL_LIB)/libSDL2_gfx.a -L $(SDL_LIB)/libSDL2_ttf-2.0.so $(SDL_LIB)/libSDL2_ttf.a -lSDL2_mixer -lfreetype -lpng -ljpeg -ltiff -lwebp
 
 
