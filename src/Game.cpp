@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "TextureManager.h"
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
@@ -23,6 +24,11 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
         return false; // SDL 초기화 실패
     }
 
+    if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+    {
+        return false;
+    }
+
     m_go.load(100, 100, 128, 82, "animate");
     m_player.load(300, 300, 128, 82, "animate");
     
@@ -32,14 +38,15 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 void  Game::update()
 {
-    time++;
-    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-    SDL_Delay(100);
+    m_go.update();
+    m_player.update();
 }
 
 void Game::render()
 {     
     SDL_RenderClear(m_pRenderer); 
+    m_go.draw(m_pRenderer);
+    m_player.draw(m_pRenderer);
     SDL_RenderPresent(m_pRenderer);
 }
 
