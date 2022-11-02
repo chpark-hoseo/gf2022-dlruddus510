@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 #include "Player.h"
-
+#include "Monster.h"
 
 
 class Game
@@ -26,6 +26,8 @@ private:
 
 	GameObject m_go;
 	Player m_player;
+	Monster m_Monster;
+	Monster m_Monster2;
 
 	bool m_bRunning;
 };
