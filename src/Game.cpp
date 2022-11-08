@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "TextureManager.h"
 
+Game* Game::s_pInstance = 0;
+
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -85,3 +87,4 @@ void Game::clean()
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
+
