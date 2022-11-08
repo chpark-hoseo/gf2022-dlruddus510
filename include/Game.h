@@ -2,7 +2,6 @@
 
 #include "GameObject.h"
 #include "Player.h"
-#include "Monster.h"
 
 
 class Game
@@ -23,11 +22,10 @@ public:
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+	std::vector<GameObject*> m_gameObjects;
 
-	GameObject m_go;
-	Player m_player;
-	Monster m_Monster;
-	Monster m_Monster2;
+	GameObject* m_go = new GameObject();
+	GameObject* m_player = new Player();
 
 	bool m_bRunning;
 };
