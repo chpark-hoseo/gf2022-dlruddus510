@@ -1,5 +1,9 @@
 #include "Game.h"
+#include "GameObject.h"
 #include "TextureManager.h"
+#include <algorithm>
+
+using namespace std;
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
@@ -28,11 +32,18 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     {
         return false;
     }
+    if (!TheTextureManager::Instance()->load("assets/Dogge.png", "Monster", m_pRenderer))
+    {
+        return false;
+    }
 
     m_go->load(100, 100, 128, 82, "animate");
     m_player->load(300, 300, 128, 82, "animate");
+    m_monster->load(400, 400, 64, 64, "Monster");
+
     m_gameObjects.push_back(m_go);
     m_gameObjects.push_back(m_player);
+    m_gameObjects.push_back(m_monster);
 
     m_bRunning = true;
     return true;
@@ -44,17 +55,20 @@ void  Game::update()
     {
         m_gameObjects[i]->update();
     }
+
+    //for_each(m_gameObjects.begin(), m_gameObjects.end(), GameObject::update);
 }
+
 
 void Game::render()
 {     
     SDL_RenderClear(m_pRenderer);
-
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->draw(m_pRenderer);
     }
 
+    //for_each(m_gameObjects.begin(), m_gameObjects.end(), GameObject::draw);
     SDL_RenderPresent(m_pRenderer);
 }
 
