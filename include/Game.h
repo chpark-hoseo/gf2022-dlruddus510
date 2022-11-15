@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 #include "Player.h"
-
+#include "Enemy.h"
 
 class Game
 {
@@ -33,8 +33,6 @@ private:
 	SDL_Renderer* m_pRenderer;
 	std::vector<GameObject*> m_gameObjects;
 
-	GameObject* m_go = new GameObject();
-	GameObject* m_player = new Player();
 
 	bool m_bRunning;
 };
