@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "InputHandler.h"
 
 class Game
 {
@@ -22,7 +23,7 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
-
+	void quit() { m_bRunning = false; }
 	
 
 private:
