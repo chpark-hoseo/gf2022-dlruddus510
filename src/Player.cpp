@@ -9,7 +9,9 @@ void Player::draw()
 
 void Player::update()
 {
-	//SDLGameObject::update();
+    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    m_velocity.setX(1);
+    SDLGameObject::update(); // ← 부모 클래스의 함수 호출 
 }
 
 void Player::clean() {}
