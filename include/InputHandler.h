@@ -6,7 +6,9 @@ enum mouse_buttons {
     MIDDLE = 1,
     RIGHT = 2
 };
+
 class Vector2D;
+
 class InputHandler {
 public:
     InputHandler();
@@ -21,6 +23,11 @@ public:
     void update();
     bool getMouseButtonState(int buttonNumber);
     Vector2D* getMousePosition();
+    void onMouseMove(SDL_Event event);
+    void onMouseButtonDown(SDL_Event event);
+    void onMouseButtonUp(SDL_Event event);
+    void onKeyDown();
+    void onKeyUp();
     void clean() {}
 
 private:  
