@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "TextureManager.h"
 
-
 Game* Game::s_pInstance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
@@ -27,20 +26,24 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
         return false; // SDL 초기화 실패
     }
 
-    if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+    if (!TheTextureManager::Instance()->load("assets/Player.png", "Player", m_pRenderer))
     {
         return false;
     }
 
-    m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-    m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82, "animate")));
+    if (!TheTextureManager::Instance()->load("assets/Background.png", "BG", m_pRenderer))
+    {
+        return false;
+    }
+
+    m_gameObjects.push_back(new Player(new LoaderParams(300, 400, 128, 128, "Player")));
 
 
     m_bRunning = true;
     return true;
 }
 
-void  Game::update()
+void Game::update()
 {
     for (int i = 0; i != m_gameObjects.size(); i++)
     {
@@ -52,6 +55,7 @@ void Game::render()
 {     
     SDL_RenderClear(m_pRenderer);
 
+    TheTextureManager::Instance()->draw("BG", 0, 0, 1000, 640, m_pRenderer);
     for (int i = 0; i != m_gameObjects.size(); i++) 
     {
         m_gameObjects[i]->draw();

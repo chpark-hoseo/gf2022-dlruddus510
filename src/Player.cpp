@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "TextureManager.h"
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
@@ -22,12 +23,12 @@ void Player::handleInput()
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
         m_velocity.setX(-2);
     }
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
+    /*if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
         m_velocity.setY(-2);
     }
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
         m_velocity.setY(2);
-    }
+    }*/
 }
 
 void Player::clean() {}
