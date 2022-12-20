@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "Ball.h"
 #include "InputHandler.h"
 
 class Game

@@ -30,7 +30,7 @@
     <ClCompile Include="src\SDLGameObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy.cpp">
+    <ClCompile Include="src\Ball.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Vector2D.cpp">
@@ -62,7 +62,7 @@
     <ClInclude Include="include\SDLGameObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="include\Enemy.h">
+    <ClInclude Include="include\Ball.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Vector2D.h">

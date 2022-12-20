@@ -42,7 +42,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     }
 
     m_gameObjects.push_back(new Player(new LoaderParams(300, 400, 128, 128, "Player")));
-    m_gameObjects.push_back(new Enemy(new LoaderParams(300, 400, 180, 180, "Ball")));
+    m_gameObjects.push_back(new Ball(new LoaderParams(Ball::getBallX, 0, 180, 180, "Ball")));
 
 
     m_bRunning = true;
