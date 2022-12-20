@@ -31,6 +31,7 @@ private:
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+	Ball* m_Ball1 = new Ball(const LoaderParams * pParams);
 	std::vector<GameObject*> m_gameObjects;
 
 

@@ -5,6 +5,7 @@ Game* Game::s_pInstance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
+    //m_Ball1 = new Ball();
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         m_pWindow = SDL_CreateWindow(
             title, xpos, ypos, width, height, flags);
@@ -42,7 +43,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
     }
 
     m_gameObjects.push_back(new Player(new LoaderParams(300, 400, 128, 128, "Player")));
-    m_gameObjects.push_back(new Ball(new LoaderParams(Ball::getBallX, 0, 180, 180, "Ball")));
+    m_gameObjects.push_back(new Ball(new LoaderParams(0, 0, 180, 180, "Ball")));
 
 
     m_bRunning = true;
