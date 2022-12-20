@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "TextureManager.h"
+#include <random>
 
 Game* Game::s_pInstance = 0;
 
@@ -37,14 +38,61 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
         return false;
     }
 
-    if (!TheTextureManager::Instance()->load("assets/Ball.png", "Ball", m_pRenderer))
+    if (!TheTextureManager::Instance()->load("assets/Ball.png", "Ball1", m_pRenderer))
     {
         return false;
     }
 
-    m_gameObjects.push_back(new Player(new LoaderParams(300, 400, 128, 128, "Player")));
-    m_gameObjects.push_back(new Ball(new LoaderParams(0, 0, 180, 180, "Ball")));
+    if (!TheTextureManager::Instance()->load("assets/Ball2.png", "Ball2", m_pRenderer))
+    {
+        return false;
+    }
 
+    if (!TheTextureManager::Instance()->load("assets/Ball3.png", "Ball3", m_pRenderer))
+    {
+        return false;
+    }
+
+    // 시드값을 얻기 위한 random_device 생성.
+    std::random_device rd;
+
+    // random_device 를 통해 난수 생성 엔진을 초기화 한다.
+    std::mt19937 gen(rd());
+
+    // 0 부터 99 까지 균등하게 나타나는 난수열을 생성하기 위해 균등 분포 정의.
+    std::uniform_int_distribution<int> randomBall1_X(0, 1);
+    int Ball1_x = randomBall1_X(gen) * 1000;
+    if (Ball1_x == 0)
+        Ball1_x -= 180;
+    else
+        Ball1_x += 180;
+
+    std::uniform_int_distribution<int> randomBall2_X(0, 1);
+    int Ball2_x = randomBall2_X(gen) * 1000;
+    if (Ball2_x == 0)
+        Ball2_x -= 90;
+    else
+        Ball2_x += 90;
+
+    std::uniform_int_distribution<int> randomBall3_X(0, 1);
+    int Ball3_x = randomBall3_X(gen) * 1000;
+    if (Ball3_x == 0)
+        Ball3_x -= 100;
+    else
+        Ball3_x += 100;
+
+    m_gameObjects.push_back(new Player(new LoaderParams(300, 400, 128, 128, "Player")));
+
+    for (int i = 0; i < 6; i++)
+    {
+        std::uniform_int_distribution<int> ballNumber(0, 2);
+        if (ballNumber(gen) == 0)
+            m_gameObjects.push_back(new Ball(new LoaderParams(Ball1_x, 0, 180, 180, "Ball1")));
+        else if (ballNumber(gen) == 1)
+            m_gameObjects.push_back(new Ball(new LoaderParams(Ball2_x, 0, 90, 90, "Ball2")));
+        else
+            m_gameObjects.push_back(new Ball(new LoaderParams(Ball3_x, 0, 100, 100, "Ball3")));     
+    }
 
     m_bRunning = true;
     return true;
